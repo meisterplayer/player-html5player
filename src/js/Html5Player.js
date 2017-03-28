@@ -90,6 +90,7 @@ class Html5Player extends Meister.PlayerPlugin {
             this.meister.trigger('playerError', { mediaError: this.mediaElement.error });
         });
         this.mediaElement.addEventListener('seeked', () => this.meister.trigger('_playerSeek'));
+        this.mediaElement.addEventListener('seeking', () => this.meister.trigger('playerSeeking'));
         this.mediaElement.addEventListener('timeupdate', () => this.meister.trigger('_playerTimeUpdate'));
         this.mediaElement.addEventListener('progress', () => this.meister.trigger('playerProgress', this.mediaElement));
         this.mediaElement.addEventListener('loadedmetadata', () => this.meister.trigger('playerLoadedMetadata'));
