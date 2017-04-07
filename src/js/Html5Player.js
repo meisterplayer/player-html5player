@@ -72,16 +72,38 @@ class Html5Player extends Meister.PlayerPlugin {
 
         this.wrapper.appendChild(this.mediaElement);
 
+        this.meister.on('playerPlay', () => {
+            // Replays are when an end event has been triggered and the user clicks on play again.
+            if (this.shouldTriggerReplay) {
+                this.meister.trigger('playerReplay', {});
+                this.shouldTriggerReplay = false;
+                return;
+            }
+
+            if (this.firstPlayTriggered) return;
+            this.firstPlayTriggered = true;
+
+            this.meister.trigger('playerFirstPlay', {});
+        });
+
+
         this.mediaElement.addEventListener('play', () => {
             this.meister.trigger('playerPlay', this.playerPlayEvent);
             this.playerPlayEvent = null;
         });
+
         this.mediaElement.addEventListener('pause', () => {
             this.meister.trigger('playerPause', this.playerPauseEvent);
             this.playerPauseEvent = null;
         });
+
         this.mediaElement.addEventListener('playing', () => this.meister.trigger('playerPlaying'));
-        this.mediaElement.addEventListener('ended', () => this.meister.trigger('playerEnd'));
+
+        this.mediaElement.addEventListener('ended', () => {
+            this.shouldTriggerReplay = true;
+            this.meister.trigger('playerEnd');
+        });
+
         this.mediaElement.addEventListener('error', () => {
             if (this.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
                 this.meister.error('Media not found', Meister.ErrorCodes.NO_MEDIA_FOUND);
@@ -89,6 +111,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
             this.meister.trigger('playerError', { mediaError: this.mediaElement.error });
         });
+
         this.mediaElement.addEventListener('seeked', () => this.meister.trigger('_playerSeek'));
         this.mediaElement.addEventListener('seeking', () => this.meister.trigger('playerSeeking'));
         this.mediaElement.addEventListener('timeupdate', () => this.meister.trigger('_playerTimeUpdate'));
@@ -119,7 +142,7 @@ class Html5Player extends Meister.PlayerPlugin {
         this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
 
         // Reset nudge counter.
-        this.on('itemUnloaded', () => { this.canNudge = 0; });
+        this.on('itemUnloaded', this.onItemUnloaded.bind(this));
 
         this.meister.trigger('playerCreated');
     }
@@ -139,6 +162,12 @@ class Html5Player extends Meister.PlayerPlugin {
             }
         }
     }
+
+    onItemUnloaded() {
+        this.canNudge = 0;
+        this.firstPlayTriggered = false;
+    }
+
 
     monitorBuffering() {
         const currentPlayPos = this.mediaElement.currentTime;
