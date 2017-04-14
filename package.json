@@ -1,10 +1,14 @@
 {
-  "name": "@npm-wearetriple/meister-plugin-html5player",
-  "version": "1.0.0",
+  "name": "meister-plugin-html5player",
+  "version": "5.0.0",
   "description": "Meister plugin for playing video with the html5player",
   "main": "dist/Html5player.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meisterplayer/player-html5player.git"
   },
   "keywords": [
     "meister",
