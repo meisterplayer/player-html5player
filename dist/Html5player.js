@@ -1,694 +1,132 @@
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-
-
-var get = function get(object, property, receiver) {
-  if (object === null) object = Function.prototype;
-  var desc = Object.getOwnPropertyDescriptor(object, property);
-
-  if (desc === undefined) {
-    var parent = Object.getPrototypeOf(object);
-
-    if (parent === null) {
-      return undefined;
-    } else {
-      return get(parent, property, receiver);
-    }
-  } else if ("value" in desc) {
-    return desc.value;
-  } else {
-    var getter = desc.get;
-
-    if (getter === undefined) {
-      return undefined;
-    }
-
-    return getter.call(receiver);
-  }
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-
-
-
-
-
+"use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Html5Player = __webpack_require__(1);
+
+var _Html5Player2 = _interopRequireDefault(_Html5Player);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Html5Player2.default;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var Keyboard = function () {
-    function Keyboard() {
-        classCallCheck(this, Keyboard);
-    }
+var _Keyboard = __webpack_require__(2);
 
-    createClass(Keyboard, null, [{
-        key: "F1",
+var _Keyboard2 = _interopRequireDefault(_Keyboard);
 
+var _KeyboardHandler = __webpack_require__(3);
 
-        // function keys
-        get: function get$$1() {
-            return 112;
-        }
-    }, {
-        key: "F2",
-        get: function get$$1() {
-            return 113;
-        }
-    }, {
-        key: "F3",
-        get: function get$$1() {
-            return 114;
-        }
-    }, {
-        key: "F4",
-        get: function get$$1() {
-            return 115;
-        }
-    }, {
-        key: "F5",
-        get: function get$$1() {
-            return 116;
-        }
-    }, {
-        key: "F6",
-        get: function get$$1() {
-            return 117;
-        }
-    }, {
-        key: "F7",
-        get: function get$$1() {
-            return 118;
-        }
-    }, {
-        key: "F8",
-        get: function get$$1() {
-            return 118;
-        }
-    }, {
-        key: "F9",
-        get: function get$$1() {
-            return 119;
-        }
-    }, {
-        key: "F10",
-        get: function get$$1() {
-            return 120;
-        }
-    }, {
-        key: "F11",
-        get: function get$$1() {
-            return 121;
-        }
-    }, {
-        key: "F12",
-        get: function get$$1() {
-            return 122;
-        }
+var _KeyboardHandler2 = _interopRequireDefault(_KeyboardHandler);
 
-        // Digits
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    }, {
-        key: "Digit1",
-        get: function get$$1() {
-            return 49;
-        }
-    }, {
-        key: "Digit2",
-        get: function get$$1() {
-            return 50;
-        }
-    }, {
-        key: "Digit3",
-        get: function get$$1() {
-            return 51;
-        }
-    }, {
-        key: "Digit4",
-        get: function get$$1() {
-            return 52;
-        }
-    }, {
-        key: "Digit5",
-        get: function get$$1() {
-            return 53;
-        }
-    }, {
-        key: "Digit6",
-        get: function get$$1() {
-            return 54;
-        }
-    }, {
-        key: "Digit7",
-        get: function get$$1() {
-            return 55;
-        }
-    }, {
-        key: "Digit8",
-        get: function get$$1() {
-            return 56;
-        }
-    }, {
-        key: "Digit9",
-        get: function get$$1() {
-            return 57;
-        }
-    }, {
-        key: "Digit0",
-        get: function get$$1() {
-            return 48;
-        }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-        // special chars
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    }, {
-        key: "Minus",
-        get: function get$$1() {
-            return 189;
-        }
-    }, {
-        key: "Equal",
-        get: function get$$1() {
-            return 187;
-        }
-    }, {
-        key: "Comma",
-        get: function get$$1() {
-            return 188;
-        }
-    }, {
-        key: "Period",
-        get: function get$$1() {
-            return 190;
-        }
-    }, {
-        key: "Slash",
-        get: function get$$1() {
-            return 191;
-        }
-    }, {
-        key: "Dash",
-        get: function get$$1() {
-            return 189;
-        }
-    }, {
-        key: "Semicolon",
-        get: function get$$1() {
-            return 186;
-        }
-    }, {
-        key: "Quote",
-        get: function get$$1() {
-            return 222;
-        }
-    }, {
-        key: "BracketLeft",
-        get: function get$$1() {
-            return 219;
-        }
-    }, {
-        key: "BracketRight",
-        get: function get$$1() {
-            return 221;
-        }
-    }, {
-        key: "Backquote",
-        get: function get$$1() {
-            return 192;
-        }
-    }, {
-        key: "Accent",
-        get: function get$$1() {
-            return 192;
-        }
-    }, {
-        key: "BackSlash",
-        get: function get$$1() {
-            return 220;
-        }
-
-        // control keys
-
-    }, {
-        key: "Backspace",
-        get: function get$$1() {
-            return 67;
-        }
-    }, {
-        key: "Home",
-        get: function get$$1() {
-            return 36;
-        }
-    }, {
-        key: "End",
-        get: function get$$1() {
-            return 35;
-        }
-    }, {
-        key: "PageUp",
-        get: function get$$1() {
-            return 33;
-        }
-    }, {
-        key: "PageDown",
-        get: function get$$1() {
-            return 34;
-        }
-    }, {
-        key: "ArrowRight",
-        get: function get$$1() {
-            return 39;
-        }
-    }, {
-        key: "ArrowDown",
-        get: function get$$1() {
-            return 40;
-        }
-    }, {
-        key: "ArrowLeft",
-        get: function get$$1() {
-            return 37;
-        }
-    }, {
-        key: "ArrowUp",
-        get: function get$$1() {
-            return 38;
-        }
-    }, {
-        key: "Shift",
-        get: function get$$1() {
-            return 16;
-        }
-    }, {
-        key: "Control",
-        get: function get$$1() {
-            return 17;
-        }
-    }, {
-        key: "Alt",
-        get: function get$$1() {
-            return 18;
-        }
-    }, {
-        key: "Meta",
-        get: function get$$1() {
-            return 91;
-        }
-    }, {
-        key: "Space",
-        get: function get$$1() {
-            return 32;
-        }
-    }, {
-        key: "Escape",
-        get: function get$$1() {
-            return 27;
-        }
-    }, {
-        key: "CapsLock",
-        get: function get$$1() {
-            return 20;
-        }
-    }, {
-        key: "Tab",
-        get: function get$$1() {
-            return 9;
-        }
-    }, {
-        key: "Fn",
-        get: function get$$1() {
-            return 119;
-        }
-    }, {
-        key: "NumLock",
-        get: function get$$1() {
-            return 144;
-        }
-    }, {
-        key: "ScrollLock",
-        get: function get$$1() {
-            return 145;
-        }
-    }, {
-        key: "Enter",
-        get: function get$$1() {
-            return 66;
-        }
-    }, {
-        key: "NumpadEnter",
-        get: function get$$1() {
-            return 160;
-        }
-    }, {
-        key: "Clear",
-        get: function get$$1() {
-            return 28;
-        }
-    }, {
-        key: "Delete",
-        get: function get$$1() {
-            return 112;
-        }
-    }, {
-        key: "Insert",
-        get: function get$$1() {
-            return 124;
-        }
-    }, {
-        key: "Help",
-        get: function get$$1() {
-            return 259;
-        }
-    }, {
-        key: "Pause",
-        get: function get$$1() {
-            return 121;
-        }
-    }, {
-        key: "BrightnessDown",
-        get: function get$$1() {
-            return 220;
-        }
-    }, {
-        key: "BrightnessUp",
-        get: function get$$1() {
-            return 221;
-        }
-    }, {
-        key: "Eject",
-        get: function get$$1() {
-            return 129;
-        }
-    }, {
-        key: "Power",
-        get: function get$$1() {
-            return 26;
-        }
-    }, {
-        key: "PrintScreen",
-        get: function get$$1() {
-            return 120;
-        }
-    }, {
-        key: "Standby",
-        get: function get$$1() {
-            return 224;
-        }
-
-        // Regular Chars
-
-    }, {
-        key: "WakeUp",
-        get: function get$$1() {
-            return 223;
-        }
-    }, {
-        key: "KeyQ",
-        get: function get$$1() {
-            return 81;
-        }
-    }, {
-        key: "KeyW",
-        get: function get$$1() {
-            return 87;
-        }
-    }, {
-        key: "KeyE",
-        get: function get$$1() {
-            return 69;
-        }
-    }, {
-        key: "KeyR",
-        get: function get$$1() {
-            return 82;
-        }
-    }, {
-        key: "KeyT",
-        get: function get$$1() {
-            return 84;
-        }
-    }, {
-        key: "KeyY",
-        get: function get$$1() {
-            return 89;
-        }
-    }, {
-        key: "KeyU",
-        get: function get$$1() {
-            return 85;
-        }
-    }, {
-        key: "KeyI",
-        get: function get$$1() {
-            return 73;
-        }
-    }, {
-        key: "KeyO",
-        get: function get$$1() {
-            return 79;
-        }
-    }, {
-        key: "KeyP",
-        get: function get$$1() {
-            return 80;
-        }
-    }, {
-        key: "KeyA",
-        get: function get$$1() {
-            return 65;
-        }
-    }, {
-        key: "KeyS",
-        get: function get$$1() {
-            return 83;
-        }
-    }, {
-        key: "KeyD",
-        get: function get$$1() {
-            return 68;
-        }
-    }, {
-        key: "KeyF",
-        get: function get$$1() {
-            return 70;
-        }
-    }, {
-        key: "KeyG",
-        get: function get$$1() {
-            return 71;
-        }
-    }, {
-        key: "KeyH",
-        get: function get$$1() {
-            return 72;
-        }
-    }, {
-        key: "KeyJ",
-        get: function get$$1() {
-            return 74;
-        }
-    }, {
-        key: "KeyK",
-        get: function get$$1() {
-            return 75;
-        }
-    }, {
-        key: "KeyL",
-        get: function get$$1() {
-            return 76;
-        }
-    }, {
-        key: "KeyZ",
-        get: function get$$1() {
-            return 90;
-        }
-    }, {
-        key: "KeyX",
-        get: function get$$1() {
-            return 88;
-        }
-    }, {
-        key: "KeyC",
-        get: function get$$1() {
-            return 67;
-        }
-    }, {
-        key: "KeyV",
-        get: function get$$1() {
-            return 86;
-        }
-    }, {
-        key: "KeyB",
-        get: function get$$1() {
-            return 66;
-        }
-    }, {
-        key: "KeyN",
-        get: function get$$1() {
-            return 78;
-        }
-    }, {
-        key: "KeyM",
-        get: function get$$1() {
-            return 77;
-        }
-
-        // media keys
-
-    }, {
-        key: "Mute",
-        get: function get$$1() {
-            return 173;
-        }
-    }, {
-        key: "VolumeDown",
-        get: function get$$1() {
-            return 174;
-        }
-    }, {
-        key: "VolumeUp",
-        get: function get$$1() {
-            return 175;
-        }
-    }, {
-        key: "NextTrack",
-        get: function get$$1() {
-            return 176;
-        }
-    }, {
-        key: "PreviousTrack",
-        get: function get$$1() {
-            return 177;
-        }
-    }, {
-        key: "Stop",
-        get: function get$$1() {
-            return 182;
-        }
-    }, {
-        key: "PlayPause",
-        get: function get$$1() {
-            return 179;
-        }
-    }]);
-    return Keyboard;
-}();
-
-var KeyboardHandler = function () {
-    function KeyboardHandler(container, eventHandler) {
-        classCallCheck(this, KeyboardHandler);
-
-        this.container = container;
-        this.eventHandler = eventHandler;
-
-        this.container.addEventListener('keyup', this.handleUp.bind(this));
-        this.container.addEventListener('keydown', this.handleDown.bind(this));
-    }
-
-    /**
-     * Default method onKey, uses on keyUp to actually trigger, has keyDown defaulting to preventDefault
-     */
-
-
-    createClass(KeyboardHandler, [{
-        key: 'onKey',
-        value: function onKey(key, callBack) {
-            var _this = this;
-
-            if (!Array.isArray(key)) {
-                key = [key];
-            }
-            key.forEach(function (someKey) {
-                _this.onKeyUp(someKey, callBack);
-                _this.onKeyDown(someKey, function (e) {
-                    e.preventDefault();
-                });
-            });
-        }
-    }, {
-        key: 'onKeyUp',
-        value: function onKeyUp(key, callBack) {
-            this.eventHandler.on('up' + key, callBack);
-        }
-    }, {
-        key: 'onKeyDown',
-        value: function onKeyDown(key, callBack) {
-            this.eventHandler.on('down' + key, callBack);
-        }
-    }, {
-        key: 'handleUp',
-        value: function handleUp(e) {
-            this.eventHandler.trigger('up' + e.keyCode, e);
-        }
-    }, {
-        key: 'handleDown',
-        value: function handleDown(e) {
-            this.eventHandler.trigger('down' + e.keyCode, e);
-        }
-    }]);
-    return KeyboardHandler;
-}();
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // Check every 200 ms, lower returns false positives and higher becomes too unresponsive.
 var CHECK_INTERVAL = 200;
 
 var Html5Player = function (_Meister$PlayerPlugin) {
-    inherits(Html5Player, _Meister$PlayerPlugin);
+    _inherits(Html5Player, _Meister$PlayerPlugin);
 
     function Html5Player(config, meister) {
-        classCallCheck(this, Html5Player);
+        _classCallCheck(this, Html5Player);
 
-        var _this = possibleConstructorReturn(this, (Html5Player.__proto__ || Object.getPrototypeOf(Html5Player)).call(this, config, meister));
+        var _this = _possibleConstructorReturn(this, (Html5Player.__proto__ || Object.getPrototypeOf(Html5Player)).call(this, config, meister));
 
         _this.isLoaded = false;
         _this.seekToWhenLoaded = null;
@@ -705,7 +143,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         return _this;
     }
 
-    createClass(Html5Player, [{
+    _createClass(Html5Player, [{
         key: 'isTypeSupported',
         value: function isTypeSupported(type) {
             if (type === 'html5') {
@@ -730,7 +168,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         value: function load(mediaItem) {
             var _this2 = this;
 
-            get(Html5Player.prototype.__proto__ || Object.getPrototypeOf(Html5Player.prototype), 'load', this).call(this, mediaItem);
+            _get(Html5Player.prototype.__proto__ || Object.getPrototypeOf(Html5Player.prototype), 'load', this).call(this, mediaItem);
 
             this.mediaElement = document.createElement('video');
             if (this.meister.config.audioOnly || mediaItem.mediaType === 'audio') {
@@ -759,20 +197,39 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 
             this.wrapper.appendChild(this.mediaElement);
 
+            this.meister.on('playerPlay', function () {
+                // Replays are when an end event has been triggered and the user clicks on play again.
+                if (_this2.shouldTriggerReplay) {
+                    _this2.meister.trigger('playerReplay', {});
+                    _this2.shouldTriggerReplay = false;
+                    return;
+                }
+
+                if (_this2.firstPlayTriggered) return;
+                _this2.firstPlayTriggered = true;
+
+                _this2.meister.trigger('playerFirstPlay', {});
+            });
+
             this.mediaElement.addEventListener('play', function () {
                 _this2.meister.trigger('playerPlay', _this2.playerPlayEvent);
                 _this2.playerPlayEvent = null;
             });
+
             this.mediaElement.addEventListener('pause', function () {
                 _this2.meister.trigger('playerPause', _this2.playerPauseEvent);
                 _this2.playerPauseEvent = null;
             });
+
             this.mediaElement.addEventListener('playing', function () {
                 return _this2.meister.trigger('playerPlaying');
             });
+
             this.mediaElement.addEventListener('ended', function () {
-                return _this2.meister.trigger('playerEnd');
+                _this2.shouldTriggerReplay = true;
+                _this2.meister.trigger('playerEnd');
             });
+
             this.mediaElement.addEventListener('error', function () {
                 if (_this2.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
                     _this2.meister.error('Media not found', Meister.ErrorCodes.NO_MEDIA_FOUND);
@@ -780,8 +237,12 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 
                 _this2.meister.trigger('playerError', { mediaError: _this2.mediaElement.error });
             });
+
             this.mediaElement.addEventListener('seeked', function () {
                 return _this2.meister.trigger('_playerSeek');
+            });
+            this.mediaElement.addEventListener('seeking', function () {
+                return _this2.meister.trigger('playerSeeking');
             });
             this.mediaElement.addEventListener('timeupdate', function () {
                 return _this2.meister.trigger('_playerTimeUpdate');
@@ -808,22 +269,20 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             });
 
             // keyboard handling
-            var kb = new KeyboardHandler(this.meister.container, this.meister.eventHandler);
-            kb.onKey([Keyboard.Space, Keyboard.Pause, Keyboard.PlayPause, Keyboard.Stop], this.onSpace.bind(this));
-            kb.onKey(Keyboard.NextTrack, this.nextTrack.bind(this));
-            kb.onKey(Keyboard.PreviousTrack, this.previousTrack.bind(this));
+            var kb = new _KeyboardHandler2.default(this.meister.container, this.meister.eventHandler);
+            kb.onKey([_Keyboard2.default.Space, _Keyboard2.default.Pause, _Keyboard2.default.PlayPause, _Keyboard2.default.Stop], this.onSpace.bind(this));
+            kb.onKey(_Keyboard2.default.NextTrack, this.nextTrack.bind(this));
+            kb.onKey(_Keyboard2.default.PreviousTrack, this.previousTrack.bind(this));
 
-            kb.onKey(Keyboard.ArrowLeft, this.seekBack.bind(this));
-            kb.onKey(Keyboard.ArrowRight, this.seekForward.bind(this));
-            kb.onKey(Keyboard.KeyF, this.onKeyF.bind(this));
+            kb.onKey(_Keyboard2.default.ArrowLeft, this.seekBack.bind(this));
+            kb.onKey(_Keyboard2.default.ArrowRight, this.seekForward.bind(this));
+            kb.onKey(_Keyboard2.default.KeyF, this.onKeyF.bind(this));
 
             // Buffering event.
             this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
 
             // Reset nudge counter.
-            this.on('itemUnloaded', function () {
-                _this2.canNudge = 0;
-            });
+            this.on('itemUnloaded', this.onItemUnloaded.bind(this));
 
             this.meister.trigger('playerCreated');
         }
@@ -843,6 +302,12 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                     this.backgroundImage.style['background-image'] = 'url(' + this.defaultImageUrl + ')';
                 }
             }
+        }
+    }, {
+        key: 'onItemUnloaded',
+        value: function onItemUnloaded() {
+            this.canNudge = 0;
+            this.firstPlayTriggered = false;
         }
     }, {
         key: 'monitorBuffering',
@@ -879,7 +344,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             }
 
             this.meister.trigger('playerDestroyed');
-            get(Html5Player.prototype.__proto__ || Object.getPrototypeOf(Html5Player.prototype), 'unload', this).call(this);
+            _get(Html5Player.prototype.__proto__ || Object.getPrototypeOf(Html5Player.prototype), 'unload', this).call(this);
         }
     }, {
         key: 'play',
@@ -970,7 +435,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'currentSrc',
-        set: function set$$1(url) {
+        set: function set(url) {
             if (!this.mediaElement) {
                 return;
             }
@@ -978,7 +443,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.isLoaded = false;
             this.mediaElement.src = url;
         },
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
@@ -987,14 +452,14 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'volume',
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
 
             return this.mediaElement.volume;
         },
-        set: function set$$1(volume) {
+        set: function set(volume) {
             if (!this.mediaElement) {
                 return;
             }
@@ -1003,14 +468,14 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'muted',
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
 
             return this.mediaElement.muted;
         },
-        set: function set$$1(muted) {
+        set: function set(muted) {
             if (!this.mediaElement) {
                 return;
             }
@@ -1019,7 +484,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'duration',
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
@@ -1028,7 +493,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'playing',
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
@@ -1037,14 +502,14 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }, {
         key: 'currentTime',
-        get: function get$$1() {
+        get: function get() {
             if (!this.mediaElement) {
                 return null;
             }
 
             return this.mediaElement.currentTime;
         },
-        set: function set$$1(time) {
+        set: function set(time) {
             if (!this.mediaElement) {
                 return;
             }
@@ -1057,14 +522,654 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         }
     }], [{
         key: 'pluginName',
-        get: function get$$1() {
+        get: function get() {
             return 'Html5Player';
         }
     }]);
+
     return Html5Player;
 }(Meister.PlayerPlugin);
 
 Meister.registerPlugin(Html5Player.pluginName, Html5Player);
 
-export default Html5Player;
+exports.default = Html5Player;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Keyboard = function () {
+    function Keyboard() {
+        _classCallCheck(this, Keyboard);
+    }
+
+    _createClass(Keyboard, null, [{
+        key: "F1",
+
+
+        // function keys
+        get: function get() {
+            return 112;
+        }
+    }, {
+        key: "F2",
+        get: function get() {
+            return 113;
+        }
+    }, {
+        key: "F3",
+        get: function get() {
+            return 114;
+        }
+    }, {
+        key: "F4",
+        get: function get() {
+            return 115;
+        }
+    }, {
+        key: "F5",
+        get: function get() {
+            return 116;
+        }
+    }, {
+        key: "F6",
+        get: function get() {
+            return 117;
+        }
+    }, {
+        key: "F7",
+        get: function get() {
+            return 118;
+        }
+    }, {
+        key: "F8",
+        get: function get() {
+            return 118;
+        }
+    }, {
+        key: "F9",
+        get: function get() {
+            return 119;
+        }
+    }, {
+        key: "F10",
+        get: function get() {
+            return 120;
+        }
+    }, {
+        key: "F11",
+        get: function get() {
+            return 121;
+        }
+    }, {
+        key: "F12",
+        get: function get() {
+            return 122;
+        }
+
+        // Digits
+
+    }, {
+        key: "Digit1",
+        get: function get() {
+            return 49;
+        }
+    }, {
+        key: "Digit2",
+        get: function get() {
+            return 50;
+        }
+    }, {
+        key: "Digit3",
+        get: function get() {
+            return 51;
+        }
+    }, {
+        key: "Digit4",
+        get: function get() {
+            return 52;
+        }
+    }, {
+        key: "Digit5",
+        get: function get() {
+            return 53;
+        }
+    }, {
+        key: "Digit6",
+        get: function get() {
+            return 54;
+        }
+    }, {
+        key: "Digit7",
+        get: function get() {
+            return 55;
+        }
+    }, {
+        key: "Digit8",
+        get: function get() {
+            return 56;
+        }
+    }, {
+        key: "Digit9",
+        get: function get() {
+            return 57;
+        }
+    }, {
+        key: "Digit0",
+        get: function get() {
+            return 48;
+        }
+
+        // special chars
+
+    }, {
+        key: "Minus",
+        get: function get() {
+            return 189;
+        }
+    }, {
+        key: "Equal",
+        get: function get() {
+            return 187;
+        }
+    }, {
+        key: "Comma",
+        get: function get() {
+            return 188;
+        }
+    }, {
+        key: "Period",
+        get: function get() {
+            return 190;
+        }
+    }, {
+        key: "Slash",
+        get: function get() {
+            return 191;
+        }
+    }, {
+        key: "Dash",
+        get: function get() {
+            return 189;
+        }
+    }, {
+        key: "Semicolon",
+        get: function get() {
+            return 186;
+        }
+    }, {
+        key: "Quote",
+        get: function get() {
+            return 222;
+        }
+    }, {
+        key: "BracketLeft",
+        get: function get() {
+            return 219;
+        }
+    }, {
+        key: "BracketRight",
+        get: function get() {
+            return 221;
+        }
+    }, {
+        key: "Backquote",
+        get: function get() {
+            return 192;
+        }
+    }, {
+        key: "Accent",
+        get: function get() {
+            return 192;
+        }
+    }, {
+        key: "BackSlash",
+        get: function get() {
+            return 220;
+        }
+
+        // control keys
+
+    }, {
+        key: "Backspace",
+        get: function get() {
+            return 67;
+        }
+    }, {
+        key: "Home",
+        get: function get() {
+            return 36;
+        }
+    }, {
+        key: "End",
+        get: function get() {
+            return 35;
+        }
+    }, {
+        key: "PageUp",
+        get: function get() {
+            return 33;
+        }
+    }, {
+        key: "PageDown",
+        get: function get() {
+            return 34;
+        }
+    }, {
+        key: "ArrowRight",
+        get: function get() {
+            return 39;
+        }
+    }, {
+        key: "ArrowDown",
+        get: function get() {
+            return 40;
+        }
+    }, {
+        key: "ArrowLeft",
+        get: function get() {
+            return 37;
+        }
+    }, {
+        key: "ArrowUp",
+        get: function get() {
+            return 38;
+        }
+    }, {
+        key: "Shift",
+        get: function get() {
+            return 16;
+        }
+    }, {
+        key: "Control",
+        get: function get() {
+            return 17;
+        }
+    }, {
+        key: "Alt",
+        get: function get() {
+            return 18;
+        }
+    }, {
+        key: "Meta",
+        get: function get() {
+            return 91;
+        }
+    }, {
+        key: "Space",
+        get: function get() {
+            return 32;
+        }
+    }, {
+        key: "Escape",
+        get: function get() {
+            return 27;
+        }
+    }, {
+        key: "CapsLock",
+        get: function get() {
+            return 20;
+        }
+    }, {
+        key: "Tab",
+        get: function get() {
+            return 9;
+        }
+    }, {
+        key: "Fn",
+        get: function get() {
+            return 119;
+        }
+    }, {
+        key: "NumLock",
+        get: function get() {
+            return 144;
+        }
+    }, {
+        key: "ScrollLock",
+        get: function get() {
+            return 145;
+        }
+    }, {
+        key: "Enter",
+        get: function get() {
+            return 66;
+        }
+    }, {
+        key: "NumpadEnter",
+        get: function get() {
+            return 160;
+        }
+    }, {
+        key: "Clear",
+        get: function get() {
+            return 28;
+        }
+    }, {
+        key: "Delete",
+        get: function get() {
+            return 112;
+        }
+    }, {
+        key: "Insert",
+        get: function get() {
+            return 124;
+        }
+    }, {
+        key: "Help",
+        get: function get() {
+            return 259;
+        }
+    }, {
+        key: "Pause",
+        get: function get() {
+            return 121;
+        }
+    }, {
+        key: "BrightnessDown",
+        get: function get() {
+            return 220;
+        }
+    }, {
+        key: "BrightnessUp",
+        get: function get() {
+            return 221;
+        }
+    }, {
+        key: "Eject",
+        get: function get() {
+            return 129;
+        }
+    }, {
+        key: "Power",
+        get: function get() {
+            return 26;
+        }
+    }, {
+        key: "PrintScreen",
+        get: function get() {
+            return 120;
+        }
+    }, {
+        key: "Standby",
+        get: function get() {
+            return 224;
+        }
+
+        // Regular Chars
+
+    }, {
+        key: "WakeUp",
+        get: function get() {
+            return 223;
+        }
+    }, {
+        key: "KeyQ",
+        get: function get() {
+            return 81;
+        }
+    }, {
+        key: "KeyW",
+        get: function get() {
+            return 87;
+        }
+    }, {
+        key: "KeyE",
+        get: function get() {
+            return 69;
+        }
+    }, {
+        key: "KeyR",
+        get: function get() {
+            return 82;
+        }
+    }, {
+        key: "KeyT",
+        get: function get() {
+            return 84;
+        }
+    }, {
+        key: "KeyY",
+        get: function get() {
+            return 89;
+        }
+    }, {
+        key: "KeyU",
+        get: function get() {
+            return 85;
+        }
+    }, {
+        key: "KeyI",
+        get: function get() {
+            return 73;
+        }
+    }, {
+        key: "KeyO",
+        get: function get() {
+            return 79;
+        }
+    }, {
+        key: "KeyP",
+        get: function get() {
+            return 80;
+        }
+    }, {
+        key: "KeyA",
+        get: function get() {
+            return 65;
+        }
+    }, {
+        key: "KeyS",
+        get: function get() {
+            return 83;
+        }
+    }, {
+        key: "KeyD",
+        get: function get() {
+            return 68;
+        }
+    }, {
+        key: "KeyF",
+        get: function get() {
+            return 70;
+        }
+    }, {
+        key: "KeyG",
+        get: function get() {
+            return 71;
+        }
+    }, {
+        key: "KeyH",
+        get: function get() {
+            return 72;
+        }
+    }, {
+        key: "KeyJ",
+        get: function get() {
+            return 74;
+        }
+    }, {
+        key: "KeyK",
+        get: function get() {
+            return 75;
+        }
+    }, {
+        key: "KeyL",
+        get: function get() {
+            return 76;
+        }
+    }, {
+        key: "KeyZ",
+        get: function get() {
+            return 90;
+        }
+    }, {
+        key: "KeyX",
+        get: function get() {
+            return 88;
+        }
+    }, {
+        key: "KeyC",
+        get: function get() {
+            return 67;
+        }
+    }, {
+        key: "KeyV",
+        get: function get() {
+            return 86;
+        }
+    }, {
+        key: "KeyB",
+        get: function get() {
+            return 66;
+        }
+    }, {
+        key: "KeyN",
+        get: function get() {
+            return 78;
+        }
+    }, {
+        key: "KeyM",
+        get: function get() {
+            return 77;
+        }
+
+        // media keys
+
+    }, {
+        key: "Mute",
+        get: function get() {
+            return 173;
+        }
+    }, {
+        key: "VolumeDown",
+        get: function get() {
+            return 174;
+        }
+    }, {
+        key: "VolumeUp",
+        get: function get() {
+            return 175;
+        }
+    }, {
+        key: "NextTrack",
+        get: function get() {
+            return 176;
+        }
+    }, {
+        key: "PreviousTrack",
+        get: function get() {
+            return 177;
+        }
+    }, {
+        key: "Stop",
+        get: function get() {
+            return 182;
+        }
+    }, {
+        key: "PlayPause",
+        get: function get() {
+            return 179;
+        }
+    }]);
+
+    return Keyboard;
+}();
+
+exports.default = Keyboard;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var KeyboardHandler = function () {
+    function KeyboardHandler(container, eventHandler) {
+        _classCallCheck(this, KeyboardHandler);
+
+        this.container = container;
+        this.eventHandler = eventHandler;
+
+        this.container.addEventListener('keyup', this.handleUp.bind(this));
+        this.container.addEventListener('keydown', this.handleDown.bind(this));
+    }
+
+    /**
+     * Default method onKey, uses on keyUp to actually trigger, has keyDown defaulting to preventDefault
+     */
+
+
+    _createClass(KeyboardHandler, [{
+        key: 'onKey',
+        value: function onKey(key, callBack) {
+            var _this = this;
+
+            if (!Array.isArray(key)) {
+                key = [key];
+            }
+
+            key.forEach(function (someKey) {
+                _this.onKeyUp(someKey, callBack);
+                _this.onKeyDown(someKey, function (e) {
+                    e.preventDefault();
+                });
+            });
+        }
+    }, {
+        key: 'onKeyUp',
+        value: function onKeyUp(key, callBack) {
+            this.eventHandler.on('up' + key, callBack);
+        }
+    }, {
+        key: 'onKeyDown',
+        value: function onKeyDown(key, callBack) {
+            this.eventHandler.on('down' + key, callBack);
+        }
+    }, {
+        key: 'handleUp',
+        value: function handleUp(e) {
+            this.eventHandler.trigger('up' + e.keyCode, e);
+        }
+    }, {
+        key: 'handleDown',
+        value: function handleDown(e) {
+            this.eventHandler.trigger('down' + e.keyCode, e);
+        }
+    }]);
+
+    return KeyboardHandler;
+}();
+
+exports.default = KeyboardHandler;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(0);
+
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=Html5player.js.map
