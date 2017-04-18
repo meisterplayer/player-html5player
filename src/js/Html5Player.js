@@ -343,5 +343,6 @@ class Html5Player extends Meister.PlayerPlugin {
 }
 
 Meister.registerPlugin(Html5Player.pluginName, Html5Player);
+Meister.registerPlugin('html5Player', Html5Player);
 
 export default Html5Player;
