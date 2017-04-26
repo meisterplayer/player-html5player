@@ -531,6 +531,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 }(Meister.PlayerPlugin);
 
 Meister.registerPlugin(Html5Player.pluginName, Html5Player);
+Meister.registerPlugin('html5Player', Html5Player);
 
 exports.default = Html5Player;
 
