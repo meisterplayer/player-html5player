@@ -1,6 +1,6 @@
 {
   "name": "meister-plugin-html5player",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "Meister plugin for playing video with the html5player",
   "main": "dist/Html5player.js",
   "repository": {
