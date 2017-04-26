@@ -97,6 +97,20 @@ var meisterPlayer = new Meister('#player', {
 });
 ```
 
+### posterImage *[String]* (default: undefined) ###
+
+A URL indicating a poster frame to show until the user plays or seeks. If this attribute isn't specified, nothing is displayed until the first frame is available; then the first frame is shown as the poster frame.
+
+Example:
+
+``` JavaScript
+var meisterPlayer = new Meister('#player', {
+    Html5Player: {
+        posterImage: 'http://example.com/poster.png'
+    }
+});
+```
+
 Item options
 --------
 
@@ -137,3 +151,4 @@ meisterPlayer.setItem({
     type: 'mp4'
 });
 ```
+

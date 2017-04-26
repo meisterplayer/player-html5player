@@ -187,6 +187,10 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.mediaElement.height = this.config.height;
             this.mediaElement.setAttribute('class', this.meister.config.playerClass);
 
+            if (this.config.posterImage) {
+                this.mediaElement.setAttribute('poster', this.config.posterImage);
+            }
+
             // for doubleclick enabled behavior on iOS the playsinline attribute must be true
             if (this.meister.config.iosPlaysInline) {
                 this.mediaElement.setAttribute('playsinline', true);
