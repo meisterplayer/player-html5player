@@ -1,6 +1,6 @@
 {
   "name": "meister-plugin-html5player",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Meister plugin for playing video with the html5player",
   "main": "dist/Html5player.js",
   "repository": {
@@ -8,17 +8,9 @@
     "url": "https://github.com/meisterplayer/player-html5player.git"
   },
   "keywords": [
-    "meister",
-    "video",
-    "plugin"
   ],
   "author": "Triple",
   "license": "Apache-2.0",
   "devDependencies": {
-    "meister-js-dev": "^3.1.0",
-    "meister-gulp-webpack-tasks": "^1.0.6",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-es2017": "^6.22.0",
-    "gulp": "^3.9.1"
   }
 }
