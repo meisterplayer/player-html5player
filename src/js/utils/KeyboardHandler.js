@@ -6,6 +6,12 @@ class KeyboardHandler {
 
         this.container.addEventListener('keyup', this.handleUp.bind(this));
         this.container.addEventListener('keydown', this.handleDown.bind(this));
+
+        this.container.setAttribute('tabindex', '0');
+
+        this.eventHandler.on('playerFullscreen', () => {
+            this.container.focus();
+        });
     }
 
     /**
