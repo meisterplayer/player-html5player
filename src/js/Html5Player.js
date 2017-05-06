@@ -147,7 +147,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
         // Reset nudge counter.
         this.on('itemUnloaded', this.onItemUnloaded.bind(this));
-
+        this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
         this.meister.trigger('playerCreated');
     }
 
@@ -171,7 +171,6 @@ class Html5Player extends Meister.PlayerPlugin {
         this.canNudge = 0;
         this.firstPlayTriggered = false;
     }
-
 
     monitorBuffering() {
         const currentPlayPos = this.mediaElement.currentTime;
@@ -304,6 +303,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     onSpace(e) {
         e.preventDefault();
+        if (this.isLive && this.meister.config.disablePauseWithLive) return;
         if (this.meister.playing === true) {
             this.meister.pause();
         } else {
@@ -324,6 +324,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     seekBack(e) {
         e.preventDefault();
+        if (this.isLive && this.meister.config.disablePauseWithLive) return;
         this.meister.trigger('requestSeek', {
             timeOffset: -5,
         });
@@ -331,6 +332,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     seekForward(e) {
         e.preventDefault();
+        if (this.isLive && this.meister.config.disablePauseWithLive) return;
         this.meister.trigger('requestSeek', {
             timeOffset: 5,
         });
