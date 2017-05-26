@@ -273,7 +273,7 @@ class Html5Player extends Meister.PlayerPlugin {
         this.mediaElement.pause();
     }
 
-    disablePause() {
+    isPauseDisabled() {
         return (this.isLive && this.meister.config.disablePauseWithLive);
     }
 
@@ -307,7 +307,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     onSpace(e) {
         e.preventDefault();
-        if (this.disablePause()) return;
+        if (this.isPauseDisabled()) return;
         if (this.meister.playing === true) {
             this.meister.pause();
         } else {
@@ -328,7 +328,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     seekBack(e) {
         e.preventDefault();
-        if (this.disablePause()) return;
+        if (this.isPauseDisabled()) return;
         this.meister.trigger('requestSeek', {
             timeOffset: -5,
         });
@@ -336,7 +336,7 @@ class Html5Player extends Meister.PlayerPlugin {
 
     seekForward(e) {
         e.preventDefault();
-        if (this.disablePause()) return;
+        if (this.isPauseDisabled()) return;
         this.meister.trigger('requestSeek', {
             timeOffset: 5,
         });
