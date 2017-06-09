@@ -147,7 +147,7 @@ class Html5Player extends Meister.PlayerPlugin {
         this.on('itemLoaded', this.onItemLoaded.bind(this));
         this.on('itemUnloaded', this.onItemUnloaded.bind(this));
 
-        this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
+        // this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
         this.meister.trigger('playerCreated');
     }
 
