@@ -18,8 +18,6 @@ class Html5Player extends Meister.PlayerPlugin {
         this.buffering = false;
         this.playerPlayEvent = null;
         this.playerPauseEvent = null;
-
-        this.on('itemLoaded', this.onItemLoaded.bind(this));
     }
 
     static get pluginName() {
@@ -146,7 +144,9 @@ class Html5Player extends Meister.PlayerPlugin {
         this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
 
         // Reset nudge counter.
+        this.on('itemLoaded', this.onItemLoaded.bind(this));
         this.on('itemUnloaded', this.onItemUnloaded.bind(this));
+
         this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
         this.meister.trigger('playerCreated');
     }
