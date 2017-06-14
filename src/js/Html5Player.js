@@ -121,6 +121,7 @@ class Html5Player extends Meister.PlayerPlugin {
         this.mediaElement.addEventListener('loadedmetadata', () => this.meister.trigger('playerLoadedMetadata'));
         this.mediaElement.addEventListener('durationchange', () => this.meister.trigger('playerDurationChange'));
         this.mediaElement.addEventListener('volumechange', () => this.meister.trigger('playerVolumeChange'));
+        this.mediaElement.addEventListener('canplay', () => this.meister.trigger('playerCanPlay'));
 
         this.mediaElement.addEventListener('loadedmetadata', () => {
             this.isLoaded = true;
