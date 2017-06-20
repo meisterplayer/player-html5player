@@ -138,8 +138,6 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         _this.buffering = false;
         _this.playerPlayEvent = null;
         _this.playerPauseEvent = null;
-
-        _this.on('itemLoaded', _this.onItemLoaded.bind(_this));
         return _this;
     }
 
@@ -263,6 +261,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.mediaElement.addEventListener('volumechange', function () {
                 return _this2.meister.trigger('playerVolumeChange');
             });
+            this.mediaElement.addEventListener('canplay', function () {
+                return _this2.meister.trigger('playerCanPlay');
+            });
 
             this.mediaElement.addEventListener('loadedmetadata', function () {
                 _this2.isLoaded = true;
@@ -286,8 +287,10 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
 
             // Reset nudge counter.
+            this.on('itemLoaded', this.onItemLoaded.bind(this));
             this.on('itemUnloaded', this.onItemUnloaded.bind(this));
 
+            // this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
             this.meister.trigger('playerCreated');
         }
     }, {
@@ -390,9 +393,15 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.mediaElement.pause();
         }
     }, {
+        key: 'isPauseDisabled',
+        value: function isPauseDisabled() {
+            return this.isLive && this.meister.config.disablePauseWithLive;
+        }
+    }, {
         key: 'onSpace',
         value: function onSpace(e) {
             e.preventDefault();
+            if (this.isPauseDisabled()) return;
             if (this.meister.playing === true) {
                 this.meister.pause();
             } else {
@@ -415,6 +424,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         key: 'seekBack',
         value: function seekBack(e) {
             e.preventDefault();
+            if (this.isPauseDisabled()) return;
             this.meister.trigger('requestSeek', {
                 timeOffset: -5
             });
@@ -423,6 +433,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         key: 'seekForward',
         value: function seekForward(e) {
             e.preventDefault();
+            if (this.isPauseDisabled()) return;
             this.meister.trigger('requestSeek', {
                 timeOffset: 5
             });
@@ -535,7 +546,6 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 }(Meister.PlayerPlugin);
 
 Meister.registerPlugin(Html5Player.pluginName, Html5Player);
-Meister.registerPlugin('html5Player', Html5Player);
 
 exports.default = Html5Player;
 
@@ -1111,6 +1121,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var KeyboardHandler = function () {
     function KeyboardHandler(container, eventHandler) {
+        var _this = this;
+
         _classCallCheck(this, KeyboardHandler);
 
         this.container = container;
@@ -1118,6 +1130,12 @@ var KeyboardHandler = function () {
 
         this.container.addEventListener('keyup', this.handleUp.bind(this));
         this.container.addEventListener('keydown', this.handleDown.bind(this));
+
+        this.container.setAttribute('tabindex', '0');
+
+        this.eventHandler.on('playerFullscreen', function () {
+            _this.container.focus();
+        });
     }
 
     /**
@@ -1128,15 +1146,15 @@ var KeyboardHandler = function () {
     _createClass(KeyboardHandler, [{
         key: 'onKey',
         value: function onKey(key, callBack) {
-            var _this = this;
+            var _this2 = this;
 
             if (!Array.isArray(key)) {
                 key = [key];
             }
 
             key.forEach(function (someKey) {
-                _this.onKeyUp(someKey, callBack);
-                _this.onKeyDown(someKey, function (e) {
+                _this2.onKeyUp(someKey, callBack);
+                _this2.onKeyDown(someKey, function (e) {
                     e.preventDefault();
                 });
             });
