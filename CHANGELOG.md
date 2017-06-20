@@ -1,3 +1,19 @@
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/meisterplayer/player-html5player/compare/v5.2.0...v5.3.0) (2017-06-20)
+
+
+### Bug Fixes
+
+* **itemTimeInfo:** Remove call to super method that does not exist ([bc8ba85](https://github.com/meisterplayer/player-html5player/commit/bc8ba85))
+* **load:** Fix issue where itemLoaded was triggered while not using Html5Player ([fe2a9b3](https://github.com/meisterplayer/player-html5player/commit/fe2a9b3))
+
+
+### Features
+
+* **events:** Add playerCanPlay ([796d968](https://github.com/meisterplayer/player-html5player/commit/796d968))
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/meisterplayer/player-html5player/compare/v5.1.0...v5.2.0) (2017-05-29)
 
