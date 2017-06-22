@@ -176,7 +176,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                 this.backgroundImage.style['background-image'] = 'url(' + this.defaultImageUrl + ')';
                 this.backgroundImage.setAttribute('class', 'pf-audio-image');
 
-                this.wrapper.append(this.backgroundImage);
+                this.wrapper.appendChild(this.backgroundImage);
                 this.mediaElement = document.createElement('audio');
             }
 

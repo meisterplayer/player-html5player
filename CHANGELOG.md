@@ -1,3 +1,13 @@
+<a name="5.3.2"></a>
+## [5.3.2](https://github.com/meisterplayer/player-html5player/compare/v5.3.1...v5.3.2) (2017-06-23)
+
+
+### Bug Fixes
+
+* **html5player:** replaced append with appendChild, MSIE does not like append ([8a75357](https://github.com/meisterplayer/player-html5player/commit/8a75357))
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/meisterplayer/player-html5player/compare/v5.2.0...v5.3.0) (2017-06-20)
 
