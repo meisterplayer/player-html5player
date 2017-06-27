@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -108,6 +108,10 @@ var _Keyboard2 = _interopRequireDefault(_Keyboard);
 var _KeyboardHandler = __webpack_require__(3);
 
 var _KeyboardHandler2 = _interopRequireDefault(_KeyboardHandler);
+
+var _package = __webpack_require__(4);
+
+var _package2 = _interopRequireDefault(_package);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -539,6 +543,11 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         key: 'pluginName',
         get: function get() {
             return 'Html5Player';
+        }
+    }, {
+        key: 'pluginVersion',
+        get: function get() {
+            return _package2.default.version;
         }
     }]);
 
@@ -1188,6 +1197,35 @@ exports.default = KeyboardHandler;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"name": "@meisterplayer/plugin-html5player",
+	"version": "5.4.0",
+	"description": "Meister plugin for playing video with the html5player",
+	"main": "dist/Html5player.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/meisterplayer/player-html5player.git"
+	},
+	"keywords": [
+		"meister",
+		"video",
+		"plugin"
+	],
+	"author": "Triple",
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"meister-js-dev": "^3.1.0",
+		"meister-gulp-webpack-tasks": "^1.0.6",
+		"babel-preset-es2015": "^6.24.0",
+		"babel-preset-es2017": "^6.22.0",
+		"gulp": "^3.9.1"
+	}
+};
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(0);

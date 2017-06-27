@@ -1,3 +1,13 @@
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/meisterplayer/player-html5player/compare/v5.3.2...v5.4.0) (2017-06-27)
+
+
+### Features
+
+* **pluginVersion:** Add pluginVersion to class ([aa77c17](https://github.com/meisterplayer/player-html5player/commit/aa77c17))
+
+
+
 <a name="5.3.2"></a>
 ## [5.3.2](https://github.com/meisterplayer/player-html5player/compare/v5.3.1...v5.3.2) (2017-06-23)
 
