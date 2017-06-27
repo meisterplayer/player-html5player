@@ -1,5 +1,6 @@
 import Keyboard from './utils/Keyboard';
 import KeyboardHandler from './utils/KeyboardHandler';
+import packageJson from '../../package.json';
 
 // Check every 200 ms, lower returns false positives and higher becomes too unresponsive.
 const CHECK_INTERVAL = 200;
@@ -22,6 +23,10 @@ class Html5Player extends Meister.PlayerPlugin {
 
     static get pluginName() {
         return 'Html5Player';
+    }
+
+    static get pluginVersion() {
+        return packageJson.version;
     }
 
     isTypeSupported(type) {
