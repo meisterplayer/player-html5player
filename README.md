@@ -128,7 +128,7 @@ var meisterPlayer = new Meister('#player', {
 });
 
 meisterPlayer.setItem({
-    src: 'INSTER_SRC_HERE',
+    src: 'INSERT_SRC_HERE',
     mediaType: 'audio',
     type: 'mp4'
 });
@@ -146,7 +146,7 @@ var meisterPlayer = new Meister('#player', {
 });
 
 meisterPlayer.setItem({
-    src: 'INSTER_SRC_HERE',
+    src: 'INSERT_SRC_HERE',
     crossorigin: 'anonymous',
     type: 'mp4'
 });
