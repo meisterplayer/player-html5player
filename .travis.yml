@@ -1,0 +1,35 @@
+language: node_js
+node_js:
+- node
+before_install: npm i -g npm@latest;
+install:
+- npm install
+script:
+- npm run lint
+- npm run test
+- npm run build
+- npm run dist
+after_deploy:
+- sh ./scripts/update-release.sh
+deploy:
+  provider: npm
+  email: license@triple-it.nl
+  api_key:
+    secure: AgtgcpRnhLCjpebxF6gx+VWyWSlnhF93sx1Awlj/lLTJNpe0LUaWHKpxpRyb+O+z7BZNbuElUgN08IZ49F8ZhVy26+PyBFhxOMQzqh7VhO1bsyyccUv2F+XQemrj5mfjQx4KuN9eeW9MGeKOM/9247NxpGYVwuIbwilGS65dfW5sVFl9BfbJWYz4Lwy2zkeZejaTQaapxZUtELtuuiguA86vBorEDdkxeBtCM4pY62e5SxJ7PPd0E1oRHtDNx0aFhsPakKwDZvmFOMNhzllXlS82rjTCX1nr4ig3rG1J6AIQoNuoZ6fget3gzWTut0I2hSANj3AkOOXtyUGGYveVtUvQq+fBHe+PN+h5Sn7gPTq/wN43vQKVomafpW8CuXIU6Kq/NUJEJ7IlW2llse5AIFZWvlqeTiBLMnLhEB7uN0f+HxSS59pS8i3O3t6iqw22vBlHB4kBDYEdXzV200ciOCANOfplad9VIyI7/zvE3498PxhaacUGRwfH2Exi9pA5WtL6ksZdQkYKzve1FbokX8jb6PwhUumEhz8/zaxiaJnlQNS3ZATXSR3nidmPNzQSw1yx9/IBE3rVJz5dsMRXF9+y1qDPCGzwSaxeTwoGBVtfDuganLw48e+VY7k9PBRKqMVDn0wlC5zEyvf+sl8p6YXcKYWPsh9jtOXwgD3o51c=
+  on:
+    tags: true
+    repo: meisterplayer/player-html5player
+env:
+  global:
+  - secure: V4O2dZcOGtJ7Qlt24oy7W8+H1EykUgZL+zzEBwnGMMP7BrCv038NnV2z2m49TS+zh9CX8BdOcr4VPD4/zxLBnAfvD3JWyFcHOUEnOX1rtJ6Z59OK0SCzr1eBx4GFudsExfk44nw//KwBiAnZfZq1jRaQ/Df/Dw38Nr4pzMX2Uaxpv6GE85vzRmH1qegl2IFm1QU0obcGPNUFZtlf/XVXd5xxXlRM3wROPq3rtKd0gmmkCpuuDsjIHnJmvXM+A26EDE0Kf5nKFYy6h2nOcJWm3S+Z3Yid6+pveOFpdfFD4UBS7JjB3JPvzt324xH80DZvtd8eNlSwsTLukebfW0tnFd8lZxmNutohZrQ5ADJzSTIRNVLNQ6RuuYpebBaNBYBqx+88CUFSMPNeZOrARJFrGS1tHLl3HRuvyKTjkq1umW2ezJ103F2yMIIS8lt5u/tTneGaE3oKCy2NPgLTEIP/CIRhFmlLga6gy31fHKbfc96crkJrMZQhiIJzpE94umTbTVe6ZPfZXxKV2Z9uYwwKluI+HlDowrH0xCjGafDD8dfhfW2WhCCVDqNIBhKRiGJs62yceYBUQaqZsDH170y41XdCW2jQsUN5R86ntYpsbhvLCczrpmiumuvAxHNKDvTgruTZR0BXosi7Gx+WQb7wqo9mFbO5qamWYTrf6Lavn0s=
+  - secure: aJyd4KTY5Cz4bzIknNpxG8SJdhoLsLs8rH7Hp2IeEK42gTZNG3HfOkz8YHi+F032QgzCtgxJYOxvM8DtYA+vHPtIcidLBTdgAPM0HPVp/eQwWsn3O9NUeop0UgBKHmUoXZKkLRS8vqSypOfrb/UKIF8LgDQPvxnfjJOVW4PFQkShn1BKSQeYzuoy0xZK8bGJur2F1ui09qfwoaxKEqRzpsNsqwZmfu/bbarTok1nhPi6zyeLWYXDX1gaZRIGdTKVm9zSbsVMV5zVF0H53cnWEgceS7vj4pmLbuPXePvbKVEXH8vgzTapfMGcbOJHGeXjn8gExY3GwsdJ2kGbAF0L2t6Yij7umoJ3k9bMNMGEXOVWeXS0Bt+MB7qTLaZKkvQucKDC5vTVdbX7Cw5sEqPzl79bsk2o1QDh1sAdRb1yA8LI98hax1IrvMBM+LA0mCN98I5QfLrUavbjGugDlUKNejd/afYW/NXpXSrslCw9z8ACYiosdNkqR/n4nDKlCOOqyFxUPshz2Eae3AH0Ih6WLoBdbzjucqm3n4BKH+mpg53GfuOw/3suxH6G5Wx60gdYtKPfbzMGq+5D8wdtPrJ6V2scCW7+2m05o2vPnbi+Na48FIGa4YyR8+LHmVgo2U0cdG6OoAvbMjH/H93G9q9qzAnJXwMayJ98T15JojwtCVY=
+notifications:
+  slack:
+    rooms:
+      secure: CwUNZYW35GNJTZtklwRhWrD5Vlzb7QTW4zFtubE6Ty5XG036XGxflJLIKqw3EBQrkCfQ3yBBMzNS1hemny8JIXWN+480mIyjgAeXKaUpdz8aK54bb9/r3ijav2u7dLkLPSOD3CJqn2mYRfM1GSyOMen1qV6lBF7MjFgM95zLhDac65j2UEChWtz0wxBA+taKEC3w5gQz9IKvBr6tdVdYB7GF7VZL8GEyDHWm/zcNnIFNQ6mvmMfDMcqsoZ6CVpuIKQIf9YCqQLrK5OfaaFVNk+LxqFGaZMcPM49AgcPAnWi6cXj5c405/4X6y+nOAUUun1162DjCmsp57ebCMbSDbzjPh9mTmLN5KYaZ8lCQe3rtn9qNFZrBNtRFJ/Sgd40h1av4wF8dGGXLhjJmj4IfD/oMoeoJY7qGundGUcdM5UkEoefk4xrYEgOqkgzLi7uV2tZYhFcrvFX4mU7BMpFcJQTeFXt375TEw3JR4b8U9i7TiM2yGZq/CL9NlpLYRm/itdJiLZncrsc7xvH72WqdQNry8aEwtAOlMASkXRSaNmZagnUzWGzBJhox1weqefi+z863AvtB47qMhB9C8D8NA6Yqvq+41GK1p6J9nFZRrTJlZU6u4T0ITKeSxDBE4xjuVrCTxNR1if4uI+gO7K6LXtr+1HqXX+mY8T8bMs62TS8=
+    on_success: always
+    on_failure: always
+    template: |-
+      Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_name}@%{branch} by %{author}
+      %{result} in %{duration}
+      %{commit_subject}

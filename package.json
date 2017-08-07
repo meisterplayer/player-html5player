@@ -7,6 +7,13 @@
     "type": "git",
     "url": "https://github.com/meisterplayer/player-html5player.git"
   },
+  "scripts": {
+    "lint": "eslint ./src/js",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "build": "gulp build",
+    "dist": "gulp build:min && gulp build:dist"
+  },
   "keywords": [
     "meister",
     "video",
@@ -15,10 +22,12 @@
   "author": "Triple",
   "license": "Apache-2.0",
   "devDependencies": {
-    "meister-js-dev": "^3.1.0",
-    "meister-gulp-webpack-tasks": "^1.0.6",
+    "@meisterplayer/meister-mock": "^1.0.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-es2017": "^6.22.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "jest": "^20.0.4",
+    "meister-gulp-webpack-tasks": "^1.0.6",
+    "meister-js-dev": "^3.1.0"
   }
 }
