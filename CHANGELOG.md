@@ -1,3 +1,13 @@
+<a name="5.5.0"></a>
+# [5.5.0](https://github.com/meisterplayer/player-html5player/compare/v5.4.0...v5.5.0) (2017-08-28)
+
+
+### Features
+
+* **enableKeyBoardShortcuts:** Add the option to disable the keyboard shortcuts ([8babbdb](https://github.com/meisterplayer/player-html5player/commit/8babbdb))
+
+
+
 <a name="5.4.0"></a>
 # [5.4.0](https://github.com/meisterplayer/player-html5player/compare/v5.3.2...v5.4.0) (2017-06-27)
 

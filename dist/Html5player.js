@@ -132,6 +132,8 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 
         var _this = _possibleConstructorReturn(this, (Html5Player.__proto__ || Object.getPrototypeOf(Html5Player)).call(this, config, meister));
 
+        _this.config.enableKeyBoardShortcuts = typeof _this.config.enableKeyBoardShortcuts === 'undefined' ? true : _this.config.enableKeyBoardShortcuts;
+
         _this.isLoaded = false;
         _this.seekToWhenLoaded = null;
 
@@ -278,14 +280,16 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             });
 
             // keyboard handling
-            var kb = new _KeyboardHandler2.default(this.meister.container, this.meister.eventHandler);
-            kb.onKey([_Keyboard2.default.Space, _Keyboard2.default.Pause, _Keyboard2.default.PlayPause, _Keyboard2.default.Stop], this.onSpace.bind(this));
-            kb.onKey(_Keyboard2.default.NextTrack, this.nextTrack.bind(this));
-            kb.onKey(_Keyboard2.default.PreviousTrack, this.previousTrack.bind(this));
+            if (this.config.enableKeyBoardShortcuts) {
+                var kb = new _KeyboardHandler2.default(this.meister.container, this.meister.eventHandler);
+                kb.onKey([_Keyboard2.default.Space, _Keyboard2.default.Pause, _Keyboard2.default.PlayPause, _Keyboard2.default.Stop], this.onSpace.bind(this));
+                kb.onKey(_Keyboard2.default.NextTrack, this.nextTrack.bind(this));
+                kb.onKey(_Keyboard2.default.PreviousTrack, this.previousTrack.bind(this));
 
-            kb.onKey(_Keyboard2.default.ArrowLeft, this.seekBack.bind(this));
-            kb.onKey(_Keyboard2.default.ArrowRight, this.seekForward.bind(this));
-            kb.onKey(_Keyboard2.default.KeyF, this.onKeyF.bind(this));
+                kb.onKey(_Keyboard2.default.ArrowLeft, this.seekBack.bind(this));
+                kb.onKey(_Keyboard2.default.ArrowRight, this.seekForward.bind(this));
+                kb.onKey(_Keyboard2.default.KeyF, this.onKeyF.bind(this));
+            }
 
             // Buffering event.
             this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
@@ -1201,7 +1205,7 @@ exports.default = KeyboardHandler;
 
 module.exports = {
 	"name": "@meisterplayer/plugin-html5player",
-	"version": "5.4.0",
+	"version": "5.5.0",
 	"description": "Meister plugin for playing video with the html5player",
 	"main": "dist/Html5player.js",
 	"repository": {
