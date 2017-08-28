@@ -9,6 +9,8 @@ class Html5Player extends Meister.PlayerPlugin {
     constructor(config, meister) {
         super(config, meister);
 
+        this.config.enableKeyBoardShortcuts = (typeof this.config.enableKeyBoardShortcuts === 'undefined' ? true : this.config.enableKeyBoardShortcuts);
+
         this.isLoaded = false;
         this.seekToWhenLoaded = null;
 
@@ -137,14 +139,16 @@ class Html5Player extends Meister.PlayerPlugin {
         });
 
         // keyboard handling
-        const kb = new KeyboardHandler(this.meister.container, this.meister.eventHandler);
-        kb.onKey([Keyboard.Space, Keyboard.Pause, Keyboard.PlayPause, Keyboard.Stop], this.onSpace.bind(this));
-        kb.onKey(Keyboard.NextTrack, this.nextTrack.bind(this));
-        kb.onKey(Keyboard.PreviousTrack, this.previousTrack.bind(this));
+        if (this.config.enableKeyBoardShortcuts) {
+            const kb = new KeyboardHandler(this.meister.container, this.meister.eventHandler);
+            kb.onKey([Keyboard.Space, Keyboard.Pause, Keyboard.PlayPause, Keyboard.Stop], this.onSpace.bind(this));
+            kb.onKey(Keyboard.NextTrack, this.nextTrack.bind(this));
+            kb.onKey(Keyboard.PreviousTrack, this.previousTrack.bind(this));
 
-        kb.onKey(Keyboard.ArrowLeft, this.seekBack.bind(this));
-        kb.onKey(Keyboard.ArrowRight, this.seekForward.bind(this));
-        kb.onKey(Keyboard.KeyF, this.onKeyF.bind(this));
+            kb.onKey(Keyboard.ArrowLeft, this.seekBack.bind(this));
+            kb.onKey(Keyboard.ArrowRight, this.seekForward.bind(this));
+            kb.onKey(Keyboard.KeyF, this.onKeyF.bind(this));
+        }
 
         // Buffering event.
         this.bufferingMonitor = setInterval(this.monitorBuffering.bind(this), this.CHECK_INTERVAL);
