@@ -111,6 +111,21 @@ var meisterPlayer = new Meister('#player', {
 });
 ```
 
+### enableKeyBoardShortcuts *[Boolean]* (default: true) ###
+
+Enables the keyboard shorcuts on meister
+
+Example: 
+
+``` JavaScript
+var meisterPlayer = new Meister('#player', {
+    Html5Player: {
+        enableKeyBoardShortcuts: false // Disables the keyboard shorcuts
+    }
+});
+```
+
+
 Item options
 --------
 
