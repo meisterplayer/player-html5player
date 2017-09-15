@@ -31,6 +31,7 @@ class Html5Player extends Meister.PlayerPlugin {
         return packageJson.version;
     }
 
+    // eslint-disable-next-line class-methods-use-this
     isTypeSupported(type) {
         if (type === 'html5') {
             return true;
@@ -39,6 +40,7 @@ class Html5Player extends Meister.PlayerPlugin {
         return false;
     }
 
+    // eslint-disable-next-line class-methods-use-this
     preloadContent() {
         // It seems that the mediaElement.load() is not needed. Replaced with a hard resolve;
         return Promise.resolve();

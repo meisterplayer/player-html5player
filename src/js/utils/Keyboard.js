@@ -42,7 +42,6 @@ class Keyboard {
     static get BackSlash() { return 220; }
 
     // control keys
-    static get Backspace() { return 8; }
     static get Home() { return 36; }
     static get End() { return 35; }
     static get PageUp() { return 33; }
@@ -75,7 +74,6 @@ class Keyboard {
     static get Eject() { return 129; }
     static get Power() { return 26; }
     static get PrintScreen() { return 120; }
-    static get Standby() { return 223; }
     static get WakeUp() { return 223; }
     static get Standby() { return 224; }
 

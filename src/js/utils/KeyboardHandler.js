@@ -18,11 +18,9 @@ class KeyboardHandler {
      * Default method onKey, uses on keyUp to actually trigger, has keyDown defaulting to preventDefault
      */
     onKey(key, callBack) {
-        if (!Array.isArray(key)) {
-            key = [key];
-        }
+        const keyArray = Array.isArray(key) ? key : [key];
 
-        key.forEach((someKey) => {
+        keyArray.forEach((someKey) => {
             this.onKeyUp(someKey, callBack);
             this.onKeyDown(someKey, (e) => {
                 e.preventDefault();
