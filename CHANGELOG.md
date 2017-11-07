@@ -1,3 +1,13 @@
+<a name="5.5.1"></a>
+## [5.5.1](https://github.com/meisterplayer/player-html5player/compare/v5.5.0...v5.5.1) (2017-11-07)
+
+
+### Bug Fixes
+
+* **disablePauseWithLive:** Fix issue with keyboard controls and disabled pause ([e0bbeb0](https://github.com/meisterplayer/player-html5player/commit/e0bbeb0))
+
+
+
 <a name="5.5.0"></a>
 # [5.5.0](https://github.com/meisterplayer/player-html5player/compare/v5.4.0...v5.5.0) (2017-08-28)
 

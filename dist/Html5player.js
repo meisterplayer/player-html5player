@@ -149,6 +149,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 
     _createClass(Html5Player, [{
         key: 'isTypeSupported',
+
+
+        // eslint-disable-next-line class-methods-use-this
         value: function isTypeSupported(type) {
             if (type === 'html5') {
                 return true;
@@ -156,6 +159,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
 
             return false;
         }
+
+        // eslint-disable-next-line class-methods-use-this
+
     }, {
         key: 'preloadContent',
         value: function preloadContent() {
@@ -297,6 +303,10 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             // Reset nudge counter.
             this.on('itemLoaded', this.onItemLoaded.bind(this));
             this.on('itemUnloaded', this.onItemUnloaded.bind(this));
+
+            this.meister.on('itemTimeInfo', function (timeInfo) {
+                _this2.isLive = timeInfo.isLive;
+            });
 
             // this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
             this.meister.trigger('playerCreated');
@@ -770,11 +780,6 @@ var Keyboard = function () {
         // control keys
 
     }, {
-        key: "Backspace",
-        get: function get() {
-            return 67;
-        }
-    }, {
         key: "Home",
         get: function get() {
             return 36;
@@ -880,6 +885,11 @@ var Keyboard = function () {
             return 160;
         }
     }, {
+        key: "Backspace",
+        get: function get() {
+            return 67;
+        }
+    }, {
         key: "Clear",
         get: function get() {
             return 28;
@@ -930,6 +940,11 @@ var Keyboard = function () {
             return 120;
         }
     }, {
+        key: "WakeUp",
+        get: function get() {
+            return 223;
+        }
+    }, {
         key: "Standby",
         get: function get() {
             return 224;
@@ -937,11 +952,6 @@ var Keyboard = function () {
 
         // Regular Chars
 
-    }, {
-        key: "WakeUp",
-        get: function get() {
-            return 223;
-        }
     }, {
         key: "KeyQ",
         get: function get() {
@@ -1161,11 +1171,9 @@ var KeyboardHandler = function () {
         value: function onKey(key, callBack) {
             var _this2 = this;
 
-            if (!Array.isArray(key)) {
-                key = [key];
-            }
+            var keyArray = Array.isArray(key) ? key : [key];
 
-            key.forEach(function (someKey) {
+            keyArray.forEach(function (someKey) {
                 _this2.onKeyUp(someKey, callBack);
                 _this2.onKeyDown(someKey, function (e) {
                     e.preventDefault();
@@ -1205,12 +1213,19 @@ exports.default = KeyboardHandler;
 
 module.exports = {
 	"name": "@meisterplayer/plugin-html5player",
-	"version": "5.5.0",
+	"version": "5.5.1",
 	"description": "Meister plugin for playing video with the html5player",
 	"main": "dist/Html5player.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/meisterplayer/player-html5player.git"
+	},
+	"scripts": {
+		"lint": "eslint ./src/js",
+		"test": "jest",
+		"test:coverage": "jest --coverage",
+		"build": "gulp build",
+		"dist": "gulp build:min && gulp build:dist"
 	},
 	"keywords": [
 		"meister",
@@ -1220,11 +1235,13 @@ module.exports = {
 	"author": "Triple",
 	"license": "Apache-2.0",
 	"devDependencies": {
-		"meister-js-dev": "^3.1.0",
-		"meister-gulp-webpack-tasks": "^1.0.6",
+		"@meisterplayer/meister-mock": "^1.0.0",
 		"babel-preset-es2015": "^6.24.0",
 		"babel-preset-es2017": "^6.22.0",
-		"gulp": "^3.9.1"
+		"gulp": "^3.9.1",
+		"jest": "^20.0.4",
+		"meister-gulp-webpack-tasks": "^1.0.6",
+		"meister-js-dev": "^3.1.0"
 	}
 };
 
