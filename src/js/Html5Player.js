@@ -290,7 +290,7 @@ class Html5Player extends Meister.PlayerPlugin {
     }
 
     isPauseDisabled() {
-        return (this.isLive && this.meister.config.disablePauseWithLive);
+        return !!this.isLive && !!this.meister.config.disablePauseWithLive;
     }
 
     get duration() {
