@@ -55,9 +55,9 @@ class Html5Player extends Meister.PlayerPlugin {
         this.mediaElement = document.createElement('video');
         if (this.meister.config.audioOnly || mediaItem.mediaType === 'audio') {
             // TODO create own plugin for audio player
-            this.backgroundImage = document.createElement('div');
+            this.backgroundImage = document.createElement('img');
             this.defaultImageUrl = this.meister.config.defaultAudioImage || '';
-            this.backgroundImage.style['background-image'] = `url(${this.defaultImageUrl})`;
+            this.backgroundImage.src = this.defaultImageUrl;
             this.backgroundImage.setAttribute('class', 'pf-audio-image');
 
             this.wrapper.appendChild(this.backgroundImage);
