@@ -111,7 +111,6 @@ class Html5Player extends Meister.PlayerPlugin {
         this.mediaElement.addEventListener('playing', () => this.meister.trigger('playerPlaying'));
 
         this.mediaElement.addEventListener('ended', () => {
-            this.shouldTriggerReplay = true;
             this.meister.trigger('playerEnd');
         });
 
@@ -164,6 +163,10 @@ class Html5Player extends Meister.PlayerPlugin {
         });
 
         // this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
+        this.on('playerEnd', () => {
+            // moved from mediaElement.ended because this event could be temporary disabled and this is not checked in mediaElement.ended
+            this.shouldTriggerReplay = true;
+        });
         this.meister.trigger('playerCreated');
     }
 
