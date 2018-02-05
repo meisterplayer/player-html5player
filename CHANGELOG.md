@@ -1,3 +1,18 @@
+<a name="5.6.0"></a>
+# [5.6.0](https://github.com/meisterplayer/player-html5player/compare/v5.5.1...v5.6.0) (2018-02-05)
+
+
+### Bug Fixes
+
+* **playback:** DisablePauseWithLive should now work properly ([a4a3970](https://github.com/meisterplayer/player-html5player/commit/a4a3970)), closes [meisterplayer/meisterplayer#30](https://github.com/meisterplayer/meisterplayer/issues/30)
+
+
+### Features
+
+* **audio:** Use <img> tag instead of <div> for background images ([cab99b5](https://github.com/meisterplayer/player-html5player/commit/cab99b5))
+
+
+
 <a name="5.5.1"></a>
 ## [5.5.1](https://github.com/meisterplayer/player-html5player/compare/v5.5.0...v5.5.1) (2017-11-07)
 
