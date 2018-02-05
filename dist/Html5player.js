@@ -183,9 +183,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.mediaElement = document.createElement('video');
             if (this.meister.config.audioOnly || mediaItem.mediaType === 'audio') {
                 // TODO create own plugin for audio player
-                this.backgroundImage = document.createElement('div');
+                this.backgroundImage = document.createElement('img');
                 this.defaultImageUrl = this.meister.config.defaultAudioImage || '';
-                this.backgroundImage.style['background-image'] = 'url(' + this.defaultImageUrl + ')';
+                this.backgroundImage.src = this.defaultImageUrl;
                 this.backgroundImage.setAttribute('class', 'pf-audio-image');
 
                 this.wrapper.appendChild(this.backgroundImage);
@@ -240,7 +240,6 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             });
 
             this.mediaElement.addEventListener('ended', function () {
-                _this2.shouldTriggerReplay = true;
                 _this2.meister.trigger('playerEnd');
             });
 
@@ -309,6 +308,10 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             });
 
             // this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); }); // handled in the player object
+            this.on('playerEnd', function () {
+                // moved from mediaElement.ended because this event could be temporary disabled and this is not checked in mediaElement.ended
+                _this2.shouldTriggerReplay = true;
+            });
             this.meister.trigger('playerCreated');
         }
     }, {
@@ -413,7 +416,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
     }, {
         key: 'isPauseDisabled',
         value: function isPauseDisabled() {
-            return this.isLive && this.meister.config.disablePauseWithLive;
+            return !!this.isLive && !!this.meister.config.disablePauseWithLive;
         }
     }, {
         key: 'onSpace',
@@ -1213,7 +1216,7 @@ exports.default = KeyboardHandler;
 
 module.exports = {
 	"name": "@meisterplayer/plugin-html5player",
-	"version": "5.5.1",
+	"version": "5.6.1",
 	"description": "Meister plugin for playing video with the html5player",
 	"main": "dist/Html5player.js",
 	"repository": {

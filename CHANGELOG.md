@@ -1,3 +1,13 @@
+<a name="5.6.1"></a>
+## [5.6.1](https://github.com/meisterplayer/player-html5player/compare/v5.6.0...v5.6.1) (2018-02-05)
+
+
+### Bug Fixes
+
+* **events:** moved setting shouldTriggerReplay switch to playerEnd event ([b2eb7f6](https://github.com/meisterplayer/player-html5player/commit/b2eb7f6))
+
+
+
 <a name="5.6.0"></a>
 # [5.6.0](https://github.com/meisterplayer/player-html5player/compare/v5.5.1...v5.6.0) (2018-02-05)
 
