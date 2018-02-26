@@ -1,3 +1,17 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="5.6.2"></a>
+## [5.6.2](https://github.com/meisterplayer/player-html5player/compare/v5.6.1...v5.6.2) (2018-02-26)
+
+
+### Bug Fixes
+
+* **replay:** Fix issue where unnecessary buffering was triggered ([b8fcc4a](https://github.com/meisterplayer/player-html5player/commit/b8fcc4a))
+
+
+
 <a name="5.6.1"></a>
 ## [5.6.1](https://github.com/meisterplayer/player-html5player/compare/v5.6.0...v5.6.1) (2018-02-05)
 
@@ -103,6 +117,3 @@
 * **config:** Allow posterImage to be set ([339f567](https://github.com/meisterplayer/player-html5player/commit/339f567))
 * **events:** Add playerFirstPlay and playerReplay events ([a65ce54](https://github.com/meisterplayer/player-html5player/commit/a65ce54))
 * **events:** Add playerSeeking event ([dcbddff](https://github.com/meisterplayer/player-html5player/commit/dcbddff))
-
-
-
