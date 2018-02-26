@@ -87,6 +87,7 @@ class Html5Player extends Meister.PlayerPlugin {
             // Replays are when an end event has been triggered and the user clicks on play again.
             if (this.shouldTriggerReplay) {
                 this.meister.trigger('playerReplay', {});
+                this.lastPlayPos = 0;
                 this.shouldTriggerReplay = false;
                 return;
             }
