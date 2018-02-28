@@ -212,6 +212,9 @@ class Html5Player extends Meister.PlayerPlugin {
                 this.buffering = false;
                 this.meister.trigger('playerBufferedEnough');
             }
+        } else if (this.buffering) {
+            this.buffering = false;
+            this.meister.trigger('playerBufferedEnough');
         }
 
         this.lastPlayPos = currentPlayPos;
