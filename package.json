@@ -12,7 +12,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "build": "gulp build",
-    "dist": "gulp build:min && gulp build:dist"
+    "dist": "gulp build:min && gulp build:dist",
+    "release": "standard-version"
   },
   "keywords": [
     "meister",
@@ -28,6 +29,8 @@
     "gulp": "^3.9.1",
     "jest": "^20.0.4",
     "meister-gulp-webpack-tasks": "^1.0.6",
-    "meister-js-dev": "^3.1.0"
-  }
+    "meister-js-dev": "^3.1.0",
+    "standard-version": "^4.3.0"
+  },
+  "dependencies": {}
 }
