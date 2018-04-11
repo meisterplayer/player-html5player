@@ -21,6 +21,7 @@ class Html5Player extends Meister.PlayerPlugin {
         this.buffering = false;
         this.playerPlayEvent = null;
         this.playerPauseEvent = null;
+        this.hasNoDRM = false;
     }
 
     static get pluginName() {
