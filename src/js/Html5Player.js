@@ -141,6 +141,28 @@ class Html5Player extends Meister.PlayerPlugin {
             }
         });
 
+        /**
+         * Creates a listener for when a seek has been completed
+         * This was necassary since some browsers (for example IE/Edge)
+         * would not have the 'seeked' event correctly implemented
+         * This fixes that issue by listening for each event in a chain
+         */
+        const listenForPlayerSeekComplete = () => {
+            this.meister.one('playerSeeking', () => {
+                this.meister.one('playerSeek', () => {
+                    // Since playerPlay does not always trigger when a seek has been done
+                    // (Has to do with that a player can already be in a play state so no event is triggered)
+                    // we use playerTimeUpdate to be sure we can continue playing.
+                    this.meister.one('playerTimeUpdate', () => {
+                        this.meister.trigger('playerSeekComplete');
+                        listenForPlayerSeekComplete();
+                    });
+                });
+            });
+        };
+
+        listenForPlayerSeekComplete();
+
         // keyboard handling
         if (this.config.enableKeyBoardShortcuts) {
             const kb = new KeyboardHandler(this.meister.container, this.meister.eventHandler);
@@ -169,6 +191,7 @@ class Html5Player extends Meister.PlayerPlugin {
             // moved from mediaElement.ended because this event could be temporary disabled and this is not checked in mediaElement.ended
             this.shouldTriggerReplay = true;
         });
+
         this.meister.trigger('playerCreated');
     }
 
