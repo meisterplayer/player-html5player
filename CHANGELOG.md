@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.7.0"></a>
+# [5.7.0](https://github.com/meisterplayer/player-html5player/compare/v5.6.2...v5.7.0) (2018-05-01)
+
+
+### Bug Fixes
+
+* **buffering:** Fix issue where playerBufferedEnough was sometimes not called ([3edaca0](https://github.com/meisterplayer/player-html5player/commit/3edaca0))
+
+
+### Features
+
+* **events:** Add playerSeekComplete as a replacement for seeked ([030092f](https://github.com/meisterplayer/player-html5player/commit/030092f))
+
+
+
 <a name="5.6.2"></a>
 ## [5.6.2](https://github.com/meisterplayer/player-html5player/compare/v5.6.1...v5.6.2) (2018-02-26)
 
