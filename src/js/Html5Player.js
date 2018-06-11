@@ -22,6 +22,8 @@ class Html5Player extends Meister.PlayerPlugin {
         this.playerPlayEvent = null;
         this.playerPauseEvent = null;
         this.hasNoDRM = false;
+
+        this.scrubbingInProgress = false;
     }
 
     static get pluginName() {
@@ -150,18 +152,31 @@ class Html5Player extends Meister.PlayerPlugin {
         const listenForPlayerSeekComplete = () => {
             this.meister.one('playerSeeking', () => {
                 this.meister.one('playerSeek', () => {
-                    // Since playerPlay does not always trigger when a seek has been done
-                    // (Has to do with that a player can already be in a play state so no event is triggered)
-                    // we use playerTimeUpdate to be sure we can continue playing.
-                    this.meister.one('playerTimeUpdate', () => {
+                    if (!this.scrubbingInProgress) {
                         this.meister.trigger('playerSeekComplete');
-                        listenForPlayerSeekComplete();
-                    });
+                    }
+
+                    listenForPlayerSeekComplete();
                 });
             });
         };
 
         listenForPlayerSeekComplete();
+
+        /**
+         * Due to scrubbing firing multiple seek events we need to keep track
+         * of the scrubbing state.
+         */
+        this.on('startScrubbing', () => {
+            this.scrubbingInProgress = true;
+        });
+
+        this.on('endScrubbing', () => {
+            // It's possible to stop scrubbing after the last seek completed,
+            // to prevent 'losing' this we fire complete here as well.
+            this.meister.trigger('playerSeekComplete');
+            this.scrubbingInProgress = false;
+        });
 
         // keyboard handling
         if (this.config.enableKeyBoardShortcuts) {
@@ -214,6 +229,7 @@ class Html5Player extends Meister.PlayerPlugin {
     onItemUnloaded() {
         this.canNudge = 0;
         this.firstPlayTriggered = false;
+        this.scrubbingInProgress = false;
     }
 
     monitorBuffering() {
