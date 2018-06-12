@@ -1,9 +1,11 @@
 import Keyboard from './utils/Keyboard';
 import KeyboardHandler from './utils/KeyboardHandler';
+import createDebounce from './utils/debounce';
 import packageJson from '../../package.json';
 
 // Check every 200 ms, lower returns false positives and higher becomes too unresponsive.
 const CHECK_INTERVAL = 200;
+const PLAYER_SEEK_DEBOUNCE = 500;
 
 class Html5Player extends Meister.PlayerPlugin {
     constructor(config, meister) {
@@ -24,6 +26,8 @@ class Html5Player extends Meister.PlayerPlugin {
         this.hasNoDRM = false;
 
         this.scrubbingInProgress = false;
+        const playerSeekedDebounce = Number.isFinite(this.config.playerSeekDebounce) ? this.config.playerSeekDebounce : PLAYER_SEEK_DEBOUNCE;
+        this.debounce = createDebounce(playerSeekedDebounce);
     }
 
     static get pluginName() {
@@ -153,7 +157,9 @@ class Html5Player extends Meister.PlayerPlugin {
             this.meister.one('playerSeeking', () => {
                 this.meister.one('playerSeek', () => {
                     if (!this.scrubbingInProgress) {
-                        this.meister.trigger('playerSeekComplete');
+                        this.debounce(() => {
+                            this.meister.trigger('playerSeekComplete');
+                        });
                     }
 
                     listenForPlayerSeekComplete();
@@ -174,7 +180,9 @@ class Html5Player extends Meister.PlayerPlugin {
         this.on('endScrubbing', () => {
             // It's possible to stop scrubbing after the last seek completed,
             // to prevent 'losing' this we fire complete here as well.
-            this.meister.trigger('playerSeekComplete');
+            this.debounce(() => {
+                this.meister.trigger('playerSeekComplete');
+            });
             this.scrubbingInProgress = false;
         });
 

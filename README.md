@@ -38,6 +38,20 @@ var meisterPlayer = new Meister('#player', {
 });
 ```
 
+### playerSeekDebounce *[Number]* (default: 500) ###
+
+Due to differences in how browsers handle seeking through video it is necessary to debounce the trigger for the 'playerSeekComplete' event. Higher values reduce the number of duplicate events at the cost of losing some accuracy. By default this trigger is debounced for 500 milliseconds.
+
+Example:
+
+``` JavaScript
+var meisterPlayer = new Meister('#player', {
+    Html5Player: {
+        playerSeekDebounce: 700,
+    }
+});
+```
+
 
 
 ### audioOnly *[Boolean]* (default: false) ###
