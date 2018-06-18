@@ -278,6 +278,9 @@ class Html5Player extends Meister.PlayerPlugin {
         clearInterval(this.bufferingMonitor);
         if (this.mediaElement) { this.mediaElement.remove(); }
 
+        this.canNudge = 0;
+        this.firstPlayTriggered = false;
+
         this.meister.trigger('playerDestroyed');
         super.unload();
     }
