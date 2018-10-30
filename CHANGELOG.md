@@ -1,3 +1,23 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="5.9.0"></a>
+# [5.9.0](https://github.com/meisterplayer/player-html5player/compare/v5.8.0...v5.9.0) (2018-10-30)
+
+
+### Bug Fixes
+
+* **events:** Fix issue where firstPlay was not triggered after new item was loaded ([cbbfed1](https://github.com/meisterplayer/player-html5player/commit/cbbfed1))
+* **replay:** Fix issue where replay was triggering on the wrong moment ([8a25bc5](https://github.com/meisterplayer/player-html5player/commit/8a25bc5))
+
+
+### Features
+
+* **error:** Add HDCP error ([dcdc3d7](https://github.com/meisterplayer/player-html5player/commit/dcdc3d7))
+
+
+
 <a name="5.8.0"></a>
 # [5.8.0](https://github.com/meisterplayer/player-html5player/compare/v5.7.0...v5.8.0) (2018-06-12)
 
