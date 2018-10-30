@@ -122,8 +122,14 @@ class Html5Player extends Meister.PlayerPlugin {
             this.meister.trigger('playerEnd');
         });
 
-        this.mediaElement.addEventListener('error', () => {
-            if (this.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+        this.mediaElement.addEventListener('error', (error) => {
+            if (this.mediaElement.error.code === this.mediaElement.error.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+                if (this.mediaElement.error.msExtendedCode !== undefined && this.mediaElement.error.msExtendedCode === -1071241984) {
+                    // This means the browser does not have the correct video card drivers to play the content.
+                    // This currently only happens in edge.
+                    this.meister.error('Driver does not support HDCP', Meister.ErrorCodes.HDCP_NOT_SUPPORTED || 'MSTR-1002');
+                }
+            } else if (this.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
                 this.meister.error('Media not found', Meister.ErrorCodes.NO_MEDIA_FOUND);
             }
 
