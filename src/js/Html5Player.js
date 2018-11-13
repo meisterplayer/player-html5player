@@ -29,6 +29,10 @@ class Html5Player extends Meister.PlayerPlugin {
         this.scrubbingInProgress = false;
         const playerSeekedDebounce = Number.isFinite(this.config.playerSeekDebounce) ? this.config.playerSeekDebounce : PLAYER_SEEK_DEBOUNCE;
         this.debounce = createDebounce(playerSeekedDebounce);
+
+        this.meister.on('playlistMetadata', (item) => {
+            this.currentItem = item;
+        });
     }
 
     static get pluginName() {
@@ -94,7 +98,6 @@ class Html5Player extends Meister.PlayerPlugin {
         this.meister.on('playerPlay', () => {
             // Replays are when an end event has been triggered and the user clicks on play again.
             if (this.shouldTriggerReplay) {
-
                 // Make sure that the replay event is only triggered when the src is the same as the current item.
                 // Otherwise it wouldn't be a replay.
                 if (mediaItem.src !== this.currentItem.src) {
@@ -111,7 +114,7 @@ class Html5Player extends Meister.PlayerPlugin {
             this.firstPlayTriggered = true;
 
             this.meister.trigger('playerFirstPlay', {});
-        });
+        }, 'Html5Player');
 
 
         this.mediaElement.addEventListener('play', () => {
@@ -228,10 +231,6 @@ class Html5Player extends Meister.PlayerPlugin {
         this.on('playerEnd', () => {
             // moved from mediaElement.ended because this event could be temporary disabled and this is not checked in mediaElement.ended
             this.shouldTriggerReplay = true;
-        });
-
-        this.on('playlistMetadata', (item) => {
-            this.currentItem = item;
         });
 
         this.meister.trigger('playerCreated');

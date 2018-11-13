@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -109,7 +109,11 @@ var _KeyboardHandler = __webpack_require__(3);
 
 var _KeyboardHandler2 = _interopRequireDefault(_KeyboardHandler);
 
-var _package = __webpack_require__(4);
+var _debounce = __webpack_require__(4);
+
+var _debounce2 = _interopRequireDefault(_debounce);
+
+var _package = __webpack_require__(5);
 
 var _package2 = _interopRequireDefault(_package);
 
@@ -123,6 +127,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // Check every 200 ms, lower returns false positives and higher becomes too unresponsive.
 var CHECK_INTERVAL = 200;
+var PLAYER_SEEK_DEBOUNCE = 500;
 
 var Html5Player = function (_Meister$PlayerPlugin) {
     _inherits(Html5Player, _Meister$PlayerPlugin);
@@ -144,6 +149,12 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         _this.buffering = false;
         _this.playerPlayEvent = null;
         _this.playerPauseEvent = null;
+        _this.hasNoDRM = false;
+        _this.currentItem = null;
+
+        _this.scrubbingInProgress = false;
+        var playerSeekedDebounce = Number.isFinite(_this.config.playerSeekDebounce) ? _this.config.playerSeekDebounce : PLAYER_SEEK_DEBOUNCE;
+        _this.debounce = (0, _debounce2.default)(playerSeekedDebounce);
         return _this;
     }
 
@@ -214,7 +225,15 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             this.meister.on('playerPlay', function () {
                 // Replays are when an end event has been triggered and the user clicks on play again.
                 if (_this2.shouldTriggerReplay) {
+
+                    // Make sure that the replay event is only triggered when the src is the same as the current item.
+                    // Otherwise it wouldn't be a replay.
+                    if (mediaItem.src !== _this2.currentItem.src) {
+                        return;
+                    }
+
                     _this2.meister.trigger('playerReplay', {});
+                    _this2.lastPlayPos = 0;
                     _this2.shouldTriggerReplay = false;
                     return;
                 }
@@ -243,8 +262,14 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                 _this2.meister.trigger('playerEnd');
             });
 
-            this.mediaElement.addEventListener('error', function () {
-                if (_this2.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+            this.mediaElement.addEventListener('error', function (error) {
+                if (_this2.mediaElement.error.code === _this2.mediaElement.error.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+                    if (_this2.mediaElement.error.msExtendedCode !== undefined && _this2.mediaElement.error.msExtendedCode === -1071241984) {
+                        // This means the browser does not have the correct video card drivers to play the content.
+                        // This currently only happens in edge.
+                        _this2.meister.error('Driver does not support HDCP', Meister.ErrorCodes.HDCP_NOT_SUPPORTED || 'MSTR-1002');
+                    }
+                } else if (_this2.mediaElement.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
                     _this2.meister.error('Media not found', Meister.ErrorCodes.NO_MEDIA_FOUND);
                 }
 
@@ -284,6 +309,46 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                 }
             });
 
+            /**
+             * Creates a listener for when a seek has been completed
+             * This was necassary since some browsers (for example IE/Edge)
+             * would not have the 'seeked' event correctly implemented
+             * This fixes that issue by listening for each event in a chain
+             */
+            var listenForPlayerSeekComplete = function listenForPlayerSeekComplete() {
+                _this2.meister.one('playerSeeking', function () {
+                    _this2.meister.one('playerSeek', function () {
+                        if (!_this2.scrubbingInProgress) {
+                            _this2.debounce(function () {
+                                _this2.meister.trigger('playerSeekComplete');
+                            });
+                        }
+
+                        listenForPlayerSeekComplete();
+                    });
+                });
+            };
+
+            listenForPlayerSeekComplete();
+
+            /**
+             * Due to scrubbing firing multiple seek events we need to keep track
+             * of the scrubbing state.
+             */
+            this.on('startScrubbing', function () {
+                _this2.scrubbingInProgress = true;
+            });
+
+            this.on('endScrubbing', function () {
+                // It's possible to stop scrubbing after the last seek completed,
+                // to prevent 'losing' this we fire complete here as well.
+                _this2.debounce(function () {
+                    _this2.meister.trigger('playerSeekComplete');
+                });
+
+                _this2.scrubbingInProgress = false;
+            });
+
             // keyboard handling
             if (this.config.enableKeyBoardShortcuts) {
                 var kb = new _KeyboardHandler2.default(this.meister.container, this.meister.eventHandler);
@@ -312,6 +377,11 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                 // moved from mediaElement.ended because this event could be temporary disabled and this is not checked in mediaElement.ended
                 _this2.shouldTriggerReplay = true;
             });
+
+            this.on('playlistMetadata', function (item) {
+                _this2.currentItem = item;
+            });
+
             this.meister.trigger('playerCreated');
         }
     }, {
@@ -336,6 +406,7 @@ var Html5Player = function (_Meister$PlayerPlugin) {
         value: function onItemUnloaded() {
             this.canNudge = 0;
             this.firstPlayTriggered = false;
+            this.scrubbingInProgress = false;
         }
     }, {
         key: 'monitorBuffering',
@@ -359,6 +430,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
                     this.buffering = false;
                     this.meister.trigger('playerBufferedEnough');
                 }
+            } else if (this.buffering) {
+                this.buffering = false;
+                this.meister.trigger('playerBufferedEnough');
             }
 
             this.lastPlayPos = currentPlayPos;
@@ -370,6 +444,9 @@ var Html5Player = function (_Meister$PlayerPlugin) {
             if (this.mediaElement) {
                 this.mediaElement.remove();
             }
+
+            this.canNudge = 0;
+            this.firstPlayTriggered = false;
 
             this.meister.trigger('playerDestroyed');
             _get(Html5Player.prototype.__proto__ || Object.getPrototypeOf(Html5Player.prototype), 'unload', this).call(this);
@@ -1212,44 +1289,51 @@ exports.default = KeyboardHandler;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-	"name": "@meisterplayer/plugin-html5player",
-	"version": "5.6.1",
-	"description": "Meister plugin for playing video with the html5player",
-	"main": "dist/Html5player.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/meisterplayer/player-html5player.git"
-	},
-	"scripts": {
-		"lint": "eslint ./src/js",
-		"test": "jest",
-		"test:coverage": "jest --coverage",
-		"build": "gulp build",
-		"dist": "gulp build:min && gulp build:dist"
-	},
-	"keywords": [
-		"meister",
-		"video",
-		"plugin"
-	],
-	"author": "Triple",
-	"license": "Apache-2.0",
-	"devDependencies": {
-		"@meisterplayer/meister-mock": "^1.0.0",
-		"babel-preset-es2015": "^6.24.0",
-		"babel-preset-es2017": "^6.22.0",
-		"gulp": "^3.9.1",
-		"jest": "^20.0.4",
-		"meister-gulp-webpack-tasks": "^1.0.6",
-		"meister-js-dev": "^3.1.0"
-	}
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * Create a debouncing function that debounces functions for a specified amount.
+ * @param {Number} amount
+ * @returns {Function}
+ */
+var createDebounce = function createDebounce(amount) {
+    var timeoutId = null;
+
+    /**
+     * Calls the passed function only when this function is not called again
+     * within a predetermined amount of time.
+     * @param {Function} cb
+     */
+    var debounce = function debounce(cb) {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        timeoutId = setTimeout(function () {
+            timeoutId = null;
+            cb();
+        }, amount);
+    };
+
+    return debounce;
 };
+
+exports.default = createDebounce;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = {"name":"@meisterplayer/plugin-html5player","version":"5.9.0","description":"Meister plugin for playing video with the html5player","main":"dist/Html5player.js","repository":{"type":"git","url":"https://github.com/meisterplayer/player-html5player.git"},"scripts":{"lint":"eslint ./src/js","test":"jest","test:coverage":"jest --coverage","build":"gulp build","dist":"gulp build:min && gulp build:dist","release":"standard-version"},"keywords":["meister","video","plugin"],"author":"Triple","license":"Apache-2.0","devDependencies":{"@meisterplayer/meister-mock":"^1.0.0","babel-preset-es2015":"^6.24.0","babel-preset-es2017":"^6.22.0","gulp":"^3.9.1","jest":"^20.0.4","meister-gulp-webpack-tasks":"^1.0.6","meister-js-dev":"^3.1.0","standard-version":"^4.3.0"},"dependencies":{}}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(0);
