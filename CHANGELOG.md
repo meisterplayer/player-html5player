@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.9.1"></a>
+## [5.9.1](https://github.com/meisterplayer/player-html5player/compare/v5.9.0...v5.9.1) (2018-11-20)
+
+
+### Bug Fixes
+
+* **replay:** Fix issue where replay was not triggered correctly ([b4083a6](https://github.com/meisterplayer/player-html5player/commit/b4083a6))
+
+
+
 <a name="5.9.0"></a>
 # [5.9.0](https://github.com/meisterplayer/player-html5player/compare/v5.8.0...v5.9.0) (2018-10-30)
 
