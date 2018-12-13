@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.9.2"></a>
+## [5.9.2](https://github.com/meisterplayer/player-html5player/compare/v5.9.1...v5.9.2) (2018-12-13)
+
+
+### Bug Fixes
+
+* **play:** Remove double play to prevent black screens ([49babc8](https://github.com/meisterplayer/player-html5player/commit/49babc8))
+
+
+
 <a name="5.9.1"></a>
 ## [5.9.1](https://github.com/meisterplayer/player-html5player/compare/v5.9.0...v5.9.1) (2018-11-20)
 
