@@ -341,20 +341,7 @@ class Html5Player extends Meister.PlayerPlugin {
         if (!this.mediaElement) { return; }
 
         // Chrome 50 introduces promise on media.play()
-        const playPromise = this.mediaElement.play();
-
-        if (playPromise) {
-            // Known bug in chrome 50, so we catch it and try playing again.
-            // https://bugs.chromium.org/p/chromium/issues/detail?id=593273
-            playPromise.catch((err) => {
-                // An ad pauses content, no need to play again right away.
-                if (err.message.indexOf('call to pause') === -1) {
-                    setTimeout(() => {
-                        this.play();
-                    }, 100);
-                }
-            });
-        }
+        this.mediaElement.play();
     }
 
     pause(e) {
