@@ -95,7 +95,12 @@ class Html5Player extends Meister.PlayerPlugin {
 
         this.wrapper.appendChild(this.mediaElement);
 
-        this.meister.on('playerPlay', () => {
+        this.meister.on('playerPlay', (e) => {
+            // Advertisements don't count as actual playback
+            if (e && e.type === 'ad') {
+                return;
+            }
+
             // Replays are when an end event has been triggered and the user clicks on play again.
             if (this.shouldTriggerReplay) {
                 // Make sure that the replay event is only triggered when the src is the same as the current item.
