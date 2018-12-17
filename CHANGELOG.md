@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.9.3"></a>
+## [5.9.3](https://github.com/meisterplayer/player-html5player/compare/v5.9.2...v5.9.3) (2018-12-17)
+
+
+### Bug Fixes
+
+* **events:** No longer fire firstPlay event on ad resume ([ea51e76](https://github.com/meisterplayer/player-html5player/commit/ea51e76))
+
+
+
 <a name="5.9.2"></a>
 ## [5.9.2](https://github.com/meisterplayer/player-html5player/compare/v5.9.1...v5.9.2) (2018-12-13)
 
